@@ -94,8 +94,7 @@ namespace CppSharp.Passes
         private bool VisitMangledDeclaration(IMangledDecl mangledDecl)
         {
             var symbol = mangledDecl.Mangled;
-
-            if (!Context.Symbols.FindSymbol(ref symbol))
+            if (!Context.Symbols.Symbols.TryGetValue(symbol, out _))
             {
                 Diagnostics.Warning("Symbol not found: {0}", symbol);
                 return false;

@@ -136,7 +136,7 @@ namespace CppSharp.Passes
                  (!method.IsConstructor || !((Class) method.Namespace).IsAbstract))) &&
                 // we cannot handle nested anonymous types
                 (!(function.Namespace is Class) || !string.IsNullOrEmpty(function.Namespace.OriginalName)) &&
-                !Context.Symbols.FindSymbol(ref mangled);
+                !Context.Symbols.Symbols.TryGetValue(mangled, out _);
         }
 
         private SymbolsCodeGenerator GetSymbolsCodeGenerator(Module module)
